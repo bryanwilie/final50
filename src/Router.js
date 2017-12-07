@@ -6,49 +6,34 @@ import EmployeeCreate from './components/EmployeeCreate';
 import EmployeeEdit from './components/EmployeeEdit';
 
 const RouterComponent = () => {
-
   return(
     <Router sceneStyle={{ paddingTop: 65 }}>
+      <Scene key="auth">
+        <Scene key="login" component={LoginForm} title="Please Login" />
+      </Scene>
+
       <Scene key="main">
         <Scene
-          key="todayPage"
-          component={TodayPage}
-          title="Today"
+          onRight={() => Actions.employeeCreate()}
+          rightTitle="Add"
+          key="employeeList"
+          component={EmployeeList}
+          title="Employees"
           initial
         />
 
         <Scene
-          key="browsePage"
-          component={BrowsePage}
-          title="Browse"
+          key="employeeCreate"
+          component={EmployeeCreate}
+          title="Create Employee"
         />
 
         <Scene
-          key="searchPage"
-          component={SearchPage}
-          title="Search"
+          key='employeeEdit'
+          component={EmployeeEdit}
+          title=" Edit Employee"
         />
 
-        <Scene
-          key="inputPage"
-          compontent={InputPage}
-          title="Input"
-        />
-
-        <Scene
-          onRight={() => Actions.loginForm()}
-          //if logged in, show User's detail
-          rightButtonImage={require('path/to/your/icon')}
-          key="userPage"
-          component={UserPage}
-          title="User"
-        />
-
-        <Scene
-          key="loginForm"
-          component={LoginForm}
-          title="Login"
-        />
       </Scene>
     </Router>
   ); // paddingTop 60 on Android
